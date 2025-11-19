@@ -9,9 +9,10 @@ import static io.restassured.RestAssured.given;
 
 public class OrderAPI {
 
-    public static final String ORDER_PATH = "orders";
+    private static final String ORDER_PATH = "orders";
+    private static final String INGREDIENTS_PATH = "ingredients";
 
-    @Step("Создание заказа")
+    @Step("Создание заказа (авторизованный пользователь)")
     public Response createOrder(String accessToken, Order order) {
         return given()
                 .header("authorization", accessToken)
@@ -28,7 +29,7 @@ public class OrderAPI {
                 .post(ORDER_PATH);
     }
 
-    @Step("Получение заказов пользователя")
+    @Step("Получение заказов текущего пользователя")
     public Response getOrdersByCurrentUser(String accessToken) {
         return given()
                 .header("authorization", accessToken)
@@ -43,16 +44,14 @@ public class OrderAPI {
                 .get(ORDER_PATH);
     }
 
-    @Step("Получаем список возможных ингредиентов как класс")
+    @Step("Получение списка всех возможных ингредиентов")
     public IngredientsResponse getAllIngredients() {
         return given()
                 .when()
-                .get("ingredients")
+                .get(INGREDIENTS_PATH)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
-                .response()
                 .as(IngredientsResponse.class);
     }
-
 }

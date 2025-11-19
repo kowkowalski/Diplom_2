@@ -1,23 +1,19 @@
 package ru.yandex.praktikum.order;
 
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+/**
+ * Модель заказа для создания / просмотра.
+ * Используем Lombok, как советовал ревьюер.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
 
-    private ArrayList<String> ingredients;
-
-    public Order() {
-    }
-
-    public Order(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public ArrayList<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
+    private List<String> ingredients;
 }

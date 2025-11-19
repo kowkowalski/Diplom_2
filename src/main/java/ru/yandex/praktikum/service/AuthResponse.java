@@ -7,8 +7,7 @@ public class AuthResponse {
     private boolean success;
     private String accessToken;
     private String refreshToken;
-    User user;
-
+    private User user;
 
     public boolean isSuccess() {
         return success;

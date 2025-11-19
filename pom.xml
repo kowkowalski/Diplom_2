@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.yandex.praktikum</groupId>
-    <artifactId>Diplom_2</artifactId>
+    <artifactId>stellarburgers-api-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,52 +14,65 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <allure.version>2.21.0</allure.version>
-
         <aspectj.version>1.9.7</aspectj.version>
     </properties>
 
     <dependencies>
+        <!-- JUnit 4 -->
         <dependency>
-
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Rest Assured -->
         <dependency>
-            <!-- модуль REST -->
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.3.0</version>
         </dependency>
-        <dependency>
 
+        <!-- Allure JUnit4 -->
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure.version}</version>
         </dependency>
-        <dependency>
 
+        <!-- Allure Rest-Assured -->
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-rest-assured</artifactId>
             <version>${allure.version}</version>
         </dependency>
-        <dependency>
 
+        <!-- Gson -->
+        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
-        <dependency>
 
+        <!-- Apache commons-lang3 (если понадобится) -->
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
+        </dependency>
+
+        <!-- Lombok для моделей (Ingredient и т.п.) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- JUnit + Allure -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -77,7 +90,6 @@
                     </properties>
                     <systemProperties>
                         <property>
-
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
@@ -92,6 +104,7 @@
                 </dependencies>
             </plugin>
 
+            <!-- Allure Maven -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>

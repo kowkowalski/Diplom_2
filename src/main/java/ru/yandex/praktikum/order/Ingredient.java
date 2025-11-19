@@ -1,8 +1,23 @@
 package ru.yandex.praktikum.order;
 
+import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Модель ингредиента из API.
+ * Имена полей по Java-конвенции,
+ * а @SerializedName маппит их на реальные имена в JSON.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ingredient {
 
-    private String _id;
+    @SerializedName("_id")
+    private String id;
+
     private String name;
     private String type;
     private int proteins;
@@ -10,74 +25,15 @@ public class Ingredient {
     private int carbohydrates;
     private int calories;
     private int price;
+
     private String image;
-    private String image_mobile;
-    private String image_large;
-    private int __v;
 
-    public Ingredient() {
-    }
+    @SerializedName("image_mobile")
+    private String imageMobile;
 
-    public Ingredient(String id, String name, String type, int proteins, int fat, int carbohydrates, int calories, int price, String image, String image_mobile, String image_large, int v) {
-        this._id = id;
-        this.name = name;
-        this.type = type;
-        this.proteins = proteins;
-        this.fat = fat;
-        this.carbohydrates = carbohydrates;
-        this.calories = calories;
-        this.price = price;
-        this.image = image;
-        this.image_mobile = image_mobile;
-        this.image_large = image_large;
-        this.__v = v;
-    }
+    @SerializedName("image_large")
+    private String imageLarge;
 
-    public String getId() {
-        return _id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getProteins() {
-        return proteins;
-    }
-
-    public int getFat() {
-        return fat;
-    }
-
-    public int getCarbohydrates() {
-        return carbohydrates;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getImage_mobile() {
-        return image_mobile;
-    }
-
-    public String getImage_large() {
-        return image_large;
-    }
-
-    public int getV() {
-        return __v;
-    }
+    @SerializedName("__v")
+    private int version;
 }

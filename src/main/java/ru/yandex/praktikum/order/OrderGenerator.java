@@ -1,22 +1,28 @@
 package ru.yandex.praktikum.order;
 
 import ru.yandex.praktikum.service.IngredientsResponse;
-
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class OrderGenerator {
 
-    private ArrayList<String> data = new ArrayList<>();
     private Random random = new Random();
-    private static int COUNT_INGREDIENTS = 15;
 
-    public ArrayList<String> createRandomOrder(IngredientsResponse ingredients){
-        int n = 1 + random.nextInt(COUNT_INGREDIENTS-1);
-        for (int i = 0; i < n; i++) {
-            int ingIndex = random.nextInt(COUNT_INGREDIENTS);
-            data.add(ingredients.getData().get(ingIndex).getId());
+    public List<String> createRandomOrder(IngredientsResponse ingredients) {
+
+        List<String> result = new ArrayList<>();
+
+        int total = ingredients.getData().size(); // <-- реальное количество ингров
+
+        // минимум 1 ингредиент, максимум total
+        int count = 1 + random.nextInt(total);
+
+        for (int i = 0; i < count; i++) {
+            int index = random.nextInt(total);
+            result.add(ingredients.getData().get(index).getId());
         }
-        return data;
+
+        return result;
     }
 }

@@ -1,26 +1,20 @@
 package ru.yandex.praktikum.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.yandex.praktikum.order.Ingredient;
 
-import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Обёртка для ответа /ingredients.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class IngredientsResponse {
 
     private boolean success;
-    private ArrayList<Ingredient> data;
-
-    public IngredientsResponse(){
-    };
-
-    public IngredientsResponse(boolean success, ArrayList<Ingredient> data) {
-        this.success = success;
-        this.data = data;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-    public ArrayList<Ingredient> getData() {
-        return data;
-    }
+    private List<Ingredient> data;
 }
