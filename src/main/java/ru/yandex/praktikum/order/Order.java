@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-/**
- * Модель заказа для создания / просмотра.
- * Используем Lombok, как советовал ревьюер.
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

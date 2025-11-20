@@ -20,8 +20,8 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class OrderCreateTest {
 
-    private UserAPI userAPI = new UserAPI();
-    private OrderAPI orderAPI = new OrderAPI();
+    private final UserAPI userAPI = new UserAPI();
+    private final OrderAPI orderAPI = new OrderAPI();
     private String authToken;
     private IngredientsResponse ingredients;
 
@@ -64,7 +64,7 @@ public class OrderCreateTest {
 
     @Test
     @DisplayName("Создание заказа БЕЗ авторизации")
-    @Description("API актуально позволяет создавать заказ без авторизации, возвращает 200 OK")
+    @Description("API позволяет создавать заказ без авторизации — ожидаем 200 OK")
     public void createOrderWithoutAuth() {
         ingredients = orderAPI.getAllIngredients();
 
@@ -97,14 +97,13 @@ public class OrderCreateTest {
 
     @Test
     @DisplayName("Создание заказа с неверными ингредиентами")
-    @Description("API возвращает 400 или 500 — допускаем оба варианта")
+    @Description("Ожидаем ответ 500 при передаче несуществующих ингредиентов")
     public void createOrderWithWrongIngredients() {
         Order order = new Order(new ArrayList<>(List.of("123", "456")));
 
         Response response = orderAPI.createOrder(authToken, order);
 
-        // Реальное API нестабильно — допускаем оба статуса
         response.then()
-                .statusCode(anyOf(equalTo(400), equalTo(500)));
+                .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
     }
 }

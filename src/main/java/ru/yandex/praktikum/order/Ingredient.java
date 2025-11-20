@@ -5,11 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Модель ингредиента из API.
- * Имена полей по Java-конвенции,
- * а @SerializedName маппит их на реальные имена в JSON.
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
